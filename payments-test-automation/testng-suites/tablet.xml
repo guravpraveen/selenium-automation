@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Runs UI tests in Chrome on a real Android tablet (e.g. Lenovo Idea Tab Plus) through Appium.
+  Prerequisites: see TABLET_SETUP.md (USB debugging on, "adb devices" shows the tablet, Appium server running).
+  Run: mvn test -Dsuite=tablet
+-->
+<suite name="Android Tablet - Chrome" verbose="1">
+    <listeners>
+        <listener class-name="com.payments.automation.reports.TestListener"/>
+        <listener class-name="com.payments.automation.reports.RetryTransformer"/>
+    </listeners>
+    <test name="Lenovo tablet - login">
+        <parameter name="browser" value="android_chrome"/>
+        <classes><class name="com.payments.automation.tests.ui.LoginTest"/></classes>
+    </test>
+    <test name="Lenovo tablet - web actions">
+        <parameter name="browser" value="android_chrome"/>
+        <classes>
+            <class name="com.payments.automation.tests.ui.WebActionsPracticeTest">
+                <methods>
+                    <!-- Mouse hover and multiple OS windows do not exist on a touch tablet -->
+                    <exclude name="mouseHover"/>
+                    <exclude name="multipleWindows"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

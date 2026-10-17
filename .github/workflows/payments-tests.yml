@@ -1,0 +1,41 @@
+name: Payments Test Automation
+
+on:
+  push:
+    paths: ["payments-test-automation/**", ".github/workflows/payments-tests.yml"]
+  pull_request:
+    paths: ["payments-test-automation/**"]
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: "TestNG suite (regression, smoke, api, db, swift, ui, cucumber, offline)"
+        default: "regression"
+
+defaults:
+  run:
+    working-directory: payments-test-automation
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Run TestNG suite
+        run: mvn -B test -Dsuite=${{ github.event.inputs.suite || 'regression' }} -Dheadless=true
+      - name: Run Cucumber BDD
+        if: always()
+        run: mvn -B test -Dsuite=cucumber -Dheadless=true
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            payments-test-automation/target/reports/
+            payments-test-automation/target/surefire-reports/
+            payments-test-automation/target/logs/

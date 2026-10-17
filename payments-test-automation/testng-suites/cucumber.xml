@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- BDD run. Filter: mvn test -Dsuite=cucumber -Dcucumber.filter.tags="@swift" -->
+<suite name="Cucumber BDD" data-provider-thread-count="4" verbose="1">
+    <test name="Cucumber">
+        <classes><class name="com.payments.automation.runners.CucumberTestRunner"/></classes>
+    </test>
+</suite>

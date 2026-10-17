@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Mobile web: Chrome device emulation (no device needed) and real Android Chrome via Appium. -->
+<suite name="Mobile Web" verbose="1">
+    <listeners>
+        <listener class-name="com.payments.automation.reports.TestListener"/>
+        <listener class-name="com.payments.automation.reports.RetryTransformer"/>
+    </listeners>
+    <test name="Chrome mobile emulation">
+        <parameter name="browser" value="chrome_mobile_emulation"/>
+        <classes><class name="com.payments.automation.tests.ui.LoginTest"/></classes>
+    </test>
+    <!-- Start Appium server + emulator first, then uncomment:
+    <test name="Android Chrome (Appium)">
+        <parameter name="browser" value="android_chrome"/>
+        <classes><class name="com.payments.automation.tests.ui.LoginTest"/></classes>
+    </test>
+    -->
+</suite>
