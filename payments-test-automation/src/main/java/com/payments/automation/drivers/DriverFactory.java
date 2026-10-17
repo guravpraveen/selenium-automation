@@ -123,13 +123,34 @@ public final class DriverFactory {
         return options;
     }
 
+    /**
+     * Chrome on a real Android phone/tablet (e.g. Lenovo Idea Tab) or an emulator.
+     * Only deviceName is required; udid pins one device when several are connected
+     * ("adb devices" shows it, or ip:port for wireless debugging).
+     */
     private static UiAutomator2Options androidChromeOptions() {
-        return new UiAutomator2Options()
+        UiAutomator2Options options = new UiAutomator2Options()
                 .setPlatformName("Android")
-                .setDeviceName(ConfigReader.get("appium.android.deviceName", "Android Emulator"))
-                .setPlatformVersion(ConfigReader.get("appium.android.platformVersion", "14"))
+                .setDeviceName(ConfigReader.get("appium.android.deviceName", "Android Device"))
                 .withBrowserName("Chrome")
                 .setNewCommandTimeout(Duration.ofSeconds(120));
+        String platformVersion = ConfigReader.get("appium.android.platformVersion", "");
+        if (!platformVersion.isEmpty()) {
+            options.setPlatformVersion(platformVersion);
+        }
+        String udid = ConfigReader.get("appium.android.udid", "");
+        if (!udid.isEmpty()) {
+            options.setUdid(udid);
+        }
+        // Chrome on the device needs a matching chromedriver. Either start Appium with
+        // "--allow-insecure=uiautomator2:chromedriver_autodownload" (it downloads the right one),
+        // or download it yourself and set appium.android.chromedriverExecutable.
+        String chromedriver = ConfigReader.get("appium.android.chromedriverExecutable", "");
+        if (!chromedriver.isEmpty()) {
+            options.setChromedriverExecutable(chromedriver);
+        }
+        options.setCapability("appium:nativeWebScreenshot", true);
+        return options;
     }
 
     private static XCUITestOptions iosSafariOptions() {

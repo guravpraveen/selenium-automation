@@ -35,7 +35,8 @@ and the public practice sites mean you can start practising right after `git clo
 ```
 payments-test-automation
 ├── pom.xml
-├── testng-suites/                 regression, smoke, ui, cross-browser, mobile, api, db, swift, cucumber, offline
+├── testng-suites/                 regression, smoke, ui, cross-browser, mobile, tablet, api, db, swift, cucumber, offline
+├── TABLET_SETUP.md                running on a Lenovo Idea Tab / any Android device
 ├── docker-compose-grid.yml        Selenium Grid 4 with Chrome, Firefox and Edge
 └── src
     ├── main/java/com/payments/automation
@@ -99,8 +100,9 @@ docker compose -f docker-compose-grid.yml up -d
 mvn test -Dsuite=cross-browser -Dgrid.url=http://localhost:4444
 ```
 
-Real Android Chrome through Appium: start the Appium server and an emulator, then run
-`mvn test -Dbrowser=android_chrome`. You can also uncomment the Appium test in `testng-suites/mobile.xml`.
+Real Android device, for example a **Lenovo Idea Tab** tablet: connect it with USB debugging on, start Appium, then run
+`mvn test -Dsuite=tablet`. The full step-by-step guide is in **[TABLET_SETUP.md](TABLET_SETUP.md)**. It also explains
+how to run the non-browser suites directly on the tablet with Termux.
 
 ---
 
