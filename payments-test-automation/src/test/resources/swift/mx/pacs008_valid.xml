@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusMsg>
+  <AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+    <Fr><FIId><FinInstnId><BICFI>PAYBHKHHXXX</BICFI></FinInstnId></FIId></Fr>
+    <To><FIId><FinInstnId><BICFI>CORRHKHHXXX</BICFI></FinInstnId></FIId></To>
+    <BizMsgIdr>TRN0003</BizMsgIdr>
+    <MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+    <BizSvc>swift.cbprplus.02</BizSvc>
+    <CreDt>2026-10-17T09:30:00+00:00</CreDt>
+  </AppHdr>
+  <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+    <FIToFICstmrCdtTrf>
+      <GrpHdr>
+        <MsgId>TRN0003</MsgId>
+        <CreDtTm>2026-10-17T09:30:00+00:00</CreDtTm>
+        <NbOfTxs>1</NbOfTxs>
+        <SttlmInf><SttlmMtd>INDA</SttlmMtd></SttlmInf>
+      </GrpHdr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <InstrId>TRN0003</InstrId>
+          <EndToEndId>E2E-INV-7781</EndToEndId>
+          <UETR>b7c8d9e0-1f2a-4b3c-8d4e-5f6a7b8c9d0e</UETR>
+        </PmtId>
+        <IntrBkSttlmAmt Ccy="HKD">125000.50</IntrBkSttlmAmt>
+        <IntrBkSttlmDt>2026-10-18</IntrBkSttlmDt>
+        <ChrgBr>DEBT</ChrgBr>
+        <InstgAgt><FinInstnId><BICFI>PAYBHKHHXXX</BICFI></FinInstnId></InstgAgt>
+        <InstdAgt><FinInstnId><BICFI>CORRHKHHXXX</BICFI></FinInstnId></InstdAgt>
+        <Dbtr>
+          <Nm>DRAGON MANUFACTURING CO</Nm>
+          <PstlAdr><AdrLine>88 QUEENSWAY</AdrLine><AdrLine>HONG KONG</AdrLine></PstlAdr>
+        </Dbtr>
+        <DbtrAcct><Id><Othr><Id>447000123456</Id></Othr></Id></DbtrAcct>
+        <DbtrAgt><FinInstnId><BICFI>PAYBHKHHXXX</BICFI></FinInstnId></DbtrAgt>
+        <CdtrAgt><FinInstnId><BICFI>CORRHKHHXXX</BICFI></FinInstnId></CdtrAgt>
+        <Cdtr>
+          <Nm>HARBOUR LOGISTICS LTD</Nm>
+          <PstlAdr><AdrLine>1 HARBOUR ROAD</AdrLine><AdrLine>KOWLOON HK</AdrLine></PstlAdr>
+        </Cdtr>
+        <CdtrAcct><Id><Othr><Id>808123456001</Id></Othr></Id></CdtrAcct>
+        <RmtInf><Ustrd>FREIGHT CHARGES OCT 2026</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+    </FIToFICstmrCdtTrf>
+  </Document>
+</BusMsg>

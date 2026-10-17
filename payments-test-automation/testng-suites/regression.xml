@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Full regression: TestNG UI + API + DB + SWIFT. Run: mvn test  (or -Dsuite=regression) -->
+<suite name="Payments Regression" verbose="1">
+    <listeners>
+        <listener class-name="com.payments.automation.reports.TestListener"/>
+        <listener class-name="com.payments.automation.reports.RetryTransformer"/>
+    </listeners>
+    <test name="SWIFT MT-MX">
+        <packages><package name="com.payments.automation.tests.swift"/></packages>
+    </test>
+    <test name="Database">
+        <packages><package name="com.payments.automation.tests.db"/></packages>
+    </test>
+    <test name="API">
+        <packages><package name="com.payments.automation.tests.api"/></packages>
+    </test>
+    <test name="UI">
+        <packages><package name="com.payments.automation.tests.ui"/></packages>
+    </test>
+</suite>
